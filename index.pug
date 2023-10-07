@@ -1,0 +1,86 @@
+- var link = 'dompurify'
+- var title = 'DOMPurify，增加網站對 XSS 攻擊的防護力'
+- var description = 'DOMPurify，增加網站對 XSS 攻擊的防護力'
+
+<!DOCTYPE html>
+html(lang="zh-Hant")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title #{title} - August - Let's Write
+
+    link(rel="canonical", href=`https://www.letswrite.tw/${link}/`)
+    meta(property="og:url", content=`https://letswritetw.github.io/letswrite-${link}/`)
+
+    meta(property="og:type", content="website")
+
+    meta(property="og:site_name", content="Let's Write")
+    meta(property="og:title", content=`${title} - Augustus - Let's Write`)
+    meta(itemprop="name", content=`${title} - Augustus - Let's Write`)
+
+    meta(name="description", content=description)
+    meta(property="og:description", content=description)
+    meta(itemprop="description", content=description)
+
+    meta(itemprop="image", content=`https://letswritetw.github.io/letswrite-${link}/fb.jpg`)
+    meta(property="og:image", content=`https://letswritetw.github.io/letswrite-${link}/fb.jpg`)
+    meta(property="og:image:width", content="1200")
+    meta(property="og:image:height", content="630")
+    meta(property="og:image:alt", content=title)
+
+    link(rel="shortcut icon", href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png")
+
+    //- css
+    script(src="https://cdn.tailwindcss.com")
+    script.
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              main: '#42A6F7',
+              mainHover: '#167FFF'
+            }
+          }
+        }
+      }
+    link(rel="stylesheet", href="dist/style.min.css")
+
+    // Google Tag Manager
+    script.
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+  body.bg-neutral-800.text-white
+
+    // Google Tag Manager (noscript)
+    noscript
+      iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT", height="0", width="0", style="display:none;visibility:hidden")
+    
+    #app.container.mx-auto.max-w-4xl.mx-auto.p-8
+
+      .text-center
+        h1.mb-4.font-bold.text-4xl=title
+        p 筆記文：
+          a(class="text-main hover:text-mainHover", href=`https://www.letswrite.tw/${link}/`) Let's Write
+      
+      hr.my-8.mx-auto.border-t.border-gray-500.border-dashed
+
+      h2.mb-4.font-bold.text-2xl DOMPurify，使用範例
+      p.mb-8 左側輸入程式碼，右側會顯示經過 DOMPurify 處理後的結果。
+
+      section(class="grid grid-cols-1 md:grid-cols-2 gap-4")
+        div
+          h3.mb-2.font-bold.text-lg 輸入程式碼
+          textarea.p-4.w-full.bg-neutral-700.rounded-md.text-white(rows="10", v-model="before", @input="domPurityHandler")
+        div
+          h3.mb-2.font-bold.text-lg DOMPurify 處理後的結果
+          div.p-4.bg-neutral-100.rounded-md.text-neutral-700.break-all {{ after }}
+
+      hr.my-8.mx-auto.border-t.border-gray-500.border-dashed
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js")
+    script(src="dist/main.min.js")
